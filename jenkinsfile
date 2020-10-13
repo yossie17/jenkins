@@ -5,6 +5,12 @@ pipeline {
         choice(name: 'TEST_CHOICE', choices: ['1', '2', '3'], description: 'some choice param')
         booleanParam(name: 'TEST_BOOL_PARM', defaultValue: 'True', description: 'some test boolean param' )
     }
+
+    environment {
+        TEST = test1
+        TEST1 = test2
+        TEST2 = test3
+    }
     
     stages {
         stage('Build') { 
@@ -20,6 +26,7 @@ pipeline {
             } 
             steps {
                 sh 'echo Testing' 
+                echo env.TEST1
             }
         }
         stage('Deploy') { 
